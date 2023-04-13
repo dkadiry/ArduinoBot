@@ -110,79 +110,10 @@ delay(200);
  }
 
 
- // IR SENSOR LOOP
- //digitalRead(LeftObstaclePin);
- //digitalRead(RightObstaclePin);//reading the input signals from the left and right IR sensors
-  
-  if (((digitalRead(LeftObstaclePin))==1)&&((digitalRead(RightObstaclePin))==0))//this line of code is saying: when Left sensor detects the line while right sensor does not, do the following
-  {
-    Serial.println("Left Turn!!!");//make a left turn
-  analogWrite(ENA, 0);
-  analogWrite(ENB, 0);
-  delay(100);
-  digitalWrite(IN3, HIGH);
-  digitalWrite(IN4, LOW);
-  digitalWrite(IN1, LOW);
-  digitalWrite(IN2, HIGH);//keeping the H-Bridge pins active so the motors keep moving
-      analogWrite(ENB, 255);//keeping the motors on the right at constant speed
-      analogWrite(ENA, 255);
-  //analogWrite(ENA, 0);
-     
-      digitalWrite(LED, HIGH);
-      delay(200);
-      digitalWrite(LED, LOW);
-      delay (200); //making the LED on the left side blink to indicate left turn
-      delay(750);
-  }
-  
-  else
-  {
-  digitalWrite(IN1, HIGH);
-  digitalWrite(IN2, LOW);
-  analogWrite(ENA, 150);
-  digitalWrite(IN3, HIGH);
-  digitalWrite(IN4, LOW);
-  analogWrite(ENB, 150);
-  digitalWrite(LED, LOW);//In the case that the "if" statemnt isn't met, then keep LEDs Low while leaving the H-Bridge untouched
-  Serial.println("Forward!!!");
-  }
-
-  
-  if (((digitalRead(LeftObstaclePin))==0)&&((digitalRead(RightObstaclePin))==1))//this line of code is saying: when Left sensor detects the line while right sensor does not, do the following
-  {
-    Serial.println("Left Turn!!!");//make a left turn
-   analogWrite(ENA, 0);
-  analogWrite(ENB, 0);
-  delay(100);
-    digitalWrite(IN1, HIGH);
-  digitalWrite(IN2, LOW);
-  digitalWrite(IN3, LOW);
-  digitalWrite(IN4, HIGH);//keeping the H-Bridge pins active so the motors keep moving
-      analogWrite(ENA, 255);//keeping the motors on the right at constant speed
-;//keeping the H-Bridge pins active so the motors keep moving
-      analogWrite(ENB, 255);
-     
-      digitalWrite(LEDr, HIGH);
-      delay(200);
-      digitalWrite(LEDr, LOW);
-      delay (200); //making the LED on the left side blink to indicate left turn
-     delay(1445);
-  }
-  
-  else
-  {
-  digitalWrite(IN1, HIGH);
-  digitalWrite(IN2, LOW);
-  analogWrite(ENA, 150);
-  digitalWrite(IN3, HIGH);
-  digitalWrite(IN4, LOW);
-  analogWrite(ENB, 150);
-  digitalWrite(LED, LOW);//In the case that the "if" statemnt isn't met, then keep LEDs Low while leaving the H-Bridge untouched
-  }
 
 
 
-  if ((Right==HIGH && Left==HIGH)||(distance<50))
+ if ((((digitalRead(LeftObstaclePin))==1)&&((digitalRead(RightObstaclePin))==1))||(distance<40))
   {
     Serial.println("Stop");    
        analogWrite(ENA, 0);
@@ -196,6 +127,81 @@ delay(200);
       digitalWrite(LEDr,LOW);
       delay (200); 
        
+  }
+  else
+  {
+     // IR SENSOR LOOP
+ //digitalRead(LeftObstaclePin);
+ //digitalRead(RightObstaclePin);//reading the input signals from the left and right IR sensors
+  
+  if (((digitalRead(LeftObstaclePin))==1)&&((digitalRead(RightObstaclePin))==0))//this line of code is saying: when Left sensor detects the line while right sensor does not, do the following
+  {
+    Serial.println("Left Turn!!!");//make a left turn
+  analogWrite(ENA, 0);
+  analogWrite(ENB, 0);
+  delay(1000);
+  digitalWrite(IN3, HIGH);
+  digitalWrite(IN4, LOW);
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, HIGH);//keeping the H-Bridge pins active so the motors keep moving
+      analogWrite(ENB, 0);//keeping the motors on the right at constant speed
+      analogWrite(ENA, 90);
+  //analogWrite(ENA, 0);
+     
+      digitalWrite(LED, HIGH);
+      delay(200);
+      digitalWrite(LED, LOW);
+      delay (200); //making the LED on the left side blink to indicate left turn
+      
+      delay(10);
+  }
+  
+  else
+  {
+  digitalWrite(IN1, HIGH);
+  digitalWrite(IN2, LOW);
+  analogWrite(ENA, 90);
+  digitalWrite(IN3, HIGH);
+  digitalWrite(IN4, LOW);
+  analogWrite(ENB, 90);
+  digitalWrite(LED, LOW);//In the case that the "if" statemnt isn't met, then keep LEDs Low while leaving the H-Bridge untouched
+  Serial.println("Forward!!!");
+  }
+
+  
+  if (((digitalRead(LeftObstaclePin))==0)&&((digitalRead(RightObstaclePin))==1))//this line of code is saying: when Left sensor detects the line while right sensor does not, do the following
+  {
+    Serial.println("Right Turn!!!");//make a left turn
+   analogWrite(ENA, 0);
+  analogWrite(ENB, 0);
+  delay(100);
+    digitalWrite(IN1, HIGH);
+  digitalWrite(IN2, LOW);
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, HIGH);//keeping the H-Bridge pins active so the motors keep moving
+      analogWrite(ENA, 90);//keeping the motors on the right at constant speed
+;//keeping the H-Bridge pins active so the motors keep moving
+      analogWrite(ENB, 0);
+     
+      digitalWrite(LEDr, HIGH);
+      delay(200);
+      digitalWrite(LEDr, LOW);
+      delay (200); //making the LED on the left side blink to indicate left turn
+      
+     delay(10);
+  }
+  
+  else
+  {
+  digitalWrite(IN1, HIGH);
+  digitalWrite(IN2, LOW);
+  analogWrite(ENA, 90);
+  digitalWrite(IN3, HIGH);
+  digitalWrite(IN4, LOW);
+  analogWrite(ENB, 90);
+  digitalWrite(LED, LOW);//In the case that the "if" statemnt isn't met, then keep LEDs Low while leaving the H-Bridge untouched
+  }
+
   }
 
 
